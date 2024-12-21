@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,4 +12,6 @@ public class Request implements Serializable {
     private double y;
     private double r;
     private Timestamp recieved;
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+    private boolean clicked;
 }

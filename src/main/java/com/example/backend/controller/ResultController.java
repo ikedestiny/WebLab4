@@ -47,6 +47,13 @@ public class ResultController {
             // Parse the JSON body into a Map or a custom class (e.g., Point)
             ObjectMapper objectMapper = new ObjectMapper();
              req =  objectMapper.readValue(jsonBody,Request.class);
+             if (!paramsAreGood(req)){
+                 return Response
+                         .status(Response.Status.BAD_REQUEST)
+                         .entity("one of the parameters are not within range")
+                         .build();
+             }
+            System.out.println(req);
             message = req.toString() + " has been received";
             // Save the point to the database and get the updated list of points
             resultService.addResult(Checker.check(req));
@@ -85,6 +92,14 @@ public class ResultController {
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Max-Age", "1209600")
                 .build();
+    }
+
+
+    public boolean paramsAreGood(Request request){
+        return request.getR() >= -4 && request.getR() <= 4 &&
+                request.getX()  <= 4 && request.getX() >= -4 &&
+                request.getY()  >= -3 && request.getY() <= 5;
+
     }
 
 

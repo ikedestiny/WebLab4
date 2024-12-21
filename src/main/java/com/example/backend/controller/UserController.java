@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.authenticaction.BCrypt;
 import com.example.backend.model.Users;
 import com.example.backend.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +26,7 @@ public class UserController {
 
     @POST
     public Response register(String jsonBody, @Context HttpServletRequest request, @Context HttpServletResponse response, @Context HttpHeaders headers) {
-        System.out.println("add point called");
+        System.out.println("add user called");
         Response.Status status = Response.Status.CREATED;
         Response.status(Response.Status.CREATED);
 
@@ -36,6 +37,8 @@ public class UserController {
             ObjectMapper objectMapper = new ObjectMapper();
             newUser = objectMapper.readValue(jsonBody, Users.class);
             // Save the user to the database and get the updated list of points
+            String passwordHash = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt(12));
+            newUser.setPassword(passwordHash);
             message = userService.register(newUser);
         } catch (NumberFormatException | NullPointerException ex) {
             ex.printStackTrace();

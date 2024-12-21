@@ -22,5 +22,7 @@ public class Result implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+    private boolean clicked;
 
 }
