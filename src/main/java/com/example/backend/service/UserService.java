@@ -13,7 +13,7 @@ import java.util.Objects;
 @Stateless
 @Transactional
 public class UserService {
-    @PersistenceContext
+    @PersistenceContext(unitName = "mongoPU")
     private EntityManager em;
 
     public String register(Users user) {

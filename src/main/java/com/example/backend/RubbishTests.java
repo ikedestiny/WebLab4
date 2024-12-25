@@ -7,45 +7,29 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.backend.authenticaction.BCrypt;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
 public class RubbishTests {
     public static void main(String[] args) {
-//        Algorithm algorithm = Algorithm.HMAC256("baeldung");
-//        JWTVerifier verifier = JWT.require(algorithm)
-//                .withIssuer("Baeldung")
-//                .build();
-//
-//        String jwtToken = JWT.create()
-//                .withIssuer("Baeldung")
-//                .withSubject("Baeldung Details")
-//                .withClaim("userId", "1234")
-//                .withClaim("email","e@e.ru")
-//                .withIssuedAt(new Date())
-//                .withExpiresAt(new Date(System.currentTimeMillis() + 5000L))
-//                .withJWTId(UUID.randomUUID()
-//                        .toString())
-//                .withNotBefore(new Date(System.currentTimeMillis() + 1000L))
-//                .sign(algorithm);
-//
-//        //System.out.println(jwtToken);
-//
-//
-//        try {
-//            DecodedJWT decodedJWT = verifier.verify("oifuhhudhu");
-//            System.out.println(decodedJWT.getClaims());
-//        } catch (JWTVerificationException e) {
-//            e.printStackTrace();
-//        }
+        String uri = "mongodb+srv://ikeholy65:WE38JqNJm3RretKy@destiny.p6zil.mongodb.net/?retryWrites=true&w=majority&appName=destiny";
+        MongoClient client = MongoClients.create(uri);
+        MongoDatabase database = client.getDatabase("destiny");
 
+        // Create a collection if it doesn't exist
+        if (!database.listCollectionNames().into(new ArrayList<>()).contains("users")) {
+            database.createCollection("users");
+            System.out.println("Collection 'users' created.");
+        } else {
+            System.out.println("Collection 'users' already exists.");
+        }
 
-        String originalPassword = "password";
-        String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));
-        System.out.println(generatedSecuredPasswordHash);
-
-        boolean matched = BCrypt.checkpw(originalPassword, generatedSecuredPasswordHash);
-        System.out.println(matched);
+        client.close();
     }
+
 }

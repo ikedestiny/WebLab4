@@ -11,7 +11,7 @@ import java.util.List;
 @Stateless
 @Transactional
 public class ResultService {
-    @PersistenceContext
+    @PersistenceContext(unitName = "mongoPU")
     private EntityManager em;
 
     // Add result (make sure the Result entity is properly mapped)

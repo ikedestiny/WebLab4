@@ -1,19 +1,70 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-             version="3.0">
-    <persistence-unit name="postgres" transaction-type="JTA">
-        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-        <class>com.example.backend.model.Result</class>
+<!--&lt;!&ndash;<?xml version="1.0" encoding="UTF-8" standalone="yes"?>&ndash;&gt;-->
+<!--&lt;!&ndash;<persistence xmlns="https://jakarta.ee/xml/ns/persistence"&ndash;&gt;-->
+<!--&lt;!&ndash;             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&ndash;&gt;-->
+<!--&lt;!&ndash;             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"&ndash;&gt;-->
+<!--&lt;!&ndash;             version="3.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <persistence-unit name="postgres" transaction-type="JTA">&ndash;&gt;-->
+<!--&lt;!&ndash;        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>&ndash;&gt;-->
+<!--&lt;!&ndash;        <class>com.example.backend.model.Result</class>&ndash;&gt;-->
+<!--&lt;!&ndash;        <class>com.example.backend.model.Users</class>&ndash;&gt;-->
+<!--&lt;!&ndash;        <properties>&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.hbm2ddl.auto" value="update"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.show_sql" value="true"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.format_sql" value="true"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.generate_statistics" value="true"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </properties>&ndash;&gt;-->
+<!--&lt;!&ndash;    </persistence-unit>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</persistence>&ndash;&gt;-->
+
+
+<!--<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">-->
+<!--    <persistence-unit name="mongoPU" transaction-type="JTA">-->
+<!--        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+<!--        <class>com.example.backend.model.Result</class>-->
+<!--        <class>com.example.backend.model.Users</class>-->
+<!--&lt;!&ndash;        <properties>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; EclipseLink MongoDB Configuration &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.target-database" value="org.eclipse.persistence.nosql.adapters.mongo.MongoPlatform" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.connection-spec" value="org.eclipse.persistence.nosql.adapters.mongo.MongoConnectionSpec" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            &lt;!&ndash; MongoDB Connection Details &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.host" value="destiny.p6zil.mongodb.net" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.port" value="27017" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.database" value="destiny" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.user" value="ikeholy65" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.password" value="WE38JqNJm3RretKy" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            &lt;!&ndash; Connection Options &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.connection-url"&ndash;&gt;-->
+<!--&lt;!&ndash;                      value="mongodb+srv://ikeholy65:WE38JqNJm3RretKy@destiny.p6zil.mongodb.net" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.nosql.property.mongo.options"&ndash;&gt;-->
+<!--&lt;!&ndash;                      value="?retryWrites=true&amp;w=majority&amp;appName=destiny" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            &lt;!&ndash; Additional Configurations &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="eclipselink.logging.level" value="FINE" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </properties>&ndash;&gt;-->
+
+<!--        <properties>-->
+<!--            <property name="jakarta.persistence.jdbc.url" value="mongodb+srv://ikeholy65:WE38JqNJm3RretKy@destiny.p6zil.mongodb.net/?retryWrites=true&amp;w=majority&amp;appName=destiny"/>-->
+<!--            <property name="eclipselink.target-database" value="org.eclipse.persistence.nosql.adapters.mongo.MongoPlatform"/>-->
+<!--            <property name="eclipselink.logging.level" value="FINE"/>-->
+<!--            <property name="eclipselink.nosql.connection-spec" value="org.eclipse.persistence.nosql.adapters.mongo.MongoConnectionSpec"/>-->
+<!--            <property name="eclipselink.nosql.property.mongo.database" value="destiny"/>-->
+<!--        </properties>-->
+<!--    </persistence-unit>-->
+<!--</persistence>-->
+
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="mongoPU">
         <class>com.example.backend.model.Users</class>
+        <class>com.example.backend.model.Result</class>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.generate_statistics" value="true"/>
+            <property name="jakarta.persistence.jdbc.url" value="mongodb+srv://ikeholy65:WE38JqNJm3RretKy@destiny.p6zil.mongodb.net/?retryWrites=true&amp;w=majority&amp;appName=destiny"/>
+            <property name="eclipselink.target-database" value="org.eclipse.persistence.nosql.adapters.mongo.MongoPlatform"/>
+            <property name="eclipselink.nosql.connection-spec" value="org.eclipse.persistence.nosql.adapters.mongo.MongoConnectionSpec"/>
+            <property name="eclipselink.nosql.property.mongo.database" value="destiny"/>
         </properties>
     </persistence-unit>
-
 </persistence>
